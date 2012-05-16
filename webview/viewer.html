@@ -1,0 +1,49 @@
+<div id=out style=position:relative></div>
+<script src="js/jquery-1.5.1.min.js"></script> 
+<script src="js/facedetection/ccv.js"></script> 
+<script src="js/facedetection/face.js"></script>
+<script src="js/jquery.facedetection.js"></script> 
+<script src=http://pubnub.s3.amazonaws.com/pubnub-3.1.min.js></script>
+<script>$(function(){
+
+    var channel = 'jKSMN7326MQvl4mKIya025XswMU3C3dB7D9kN3FD9de'
+    ,   p       = PUBNUB.init({
+            publish_key   : 'demo',
+            subscribe_key : 'demo',
+            origin        : 'pubsub.pubnub.com'
+        })
+    ,   out = p.$('out');
+
+    var NOW = 1;
+    function unique() { return'x'+ ++NOW+''+(+new Date) }
+
+    p.subscribe({
+        channel  : channel,
+        callback : function(msg) {
+            var img = p.create('img');
+            img.crossOrigin = "Anonymous";
+            p.bind( 'load', img, function() { setTimeout( function() {
+                // Face Detect HERE
+                var coords = $(img).faceDetection();
+
+                console.log(coords);
+
+                for (var i = 0; i < coords.length; i++) {
+                    $( '<div>', { 'css': {
+                        'border'   : '3px solid yellow',
+                        'position' : 'absolute',
+                        'left'     : coords[i].positionX +'px',
+                        'top'      : coords[i].positionY +'px',
+                        'width'    : coords[i].width        +'px',
+                        'height'   : coords[i].height    +'px'
+                    } } ).appendTo('#out');
+                }
+
+                scrollTo( 0, 0xEEEEE );
+            }, 200 ) } );
+            img.src = 'http://192.168.206.164:8888/beam?' + unique();
+            out.appendChild(img);
+        }
+    });
+
+})</script>
