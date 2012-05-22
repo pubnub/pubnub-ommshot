@@ -1,15 +1,9 @@
-// this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Titanium.UI.setBackgroundColor('#000');
+// Upload URL: This will Upload the Photo.
+// Change this to point at your Python Server.
+var url = "http://192.168.206.164:8888/upload";
 
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
-
-var channel = 'jKSMN7326MQvl4mKIya025XswMU3C3dB7D9kN3FD9de';
-var pubnub  = require('pubnub').init({
-    publish_key   : 'demo',
-    subscribe_key : 'demo',
-    origin        : 'pubsub.pubnub.com'
-});
 
 //
 // create base UI tab and root window
@@ -23,6 +17,7 @@ var tab1 = Titanium.UI.createTab({
     title:'Photo Beam',
     window:win1
 });
+Titanium.UI.setBackgroundColor('#000');
 
 //
 // create controls tab and root window
@@ -62,21 +57,16 @@ function takePhoto() { Ti.Media.showCamera({
         imageview.image = imgData;
 
         var blb    = imageview.toImage();
-        var url    = "http://192.168.206.164:8888/upload";
         var client = Ti.Network.createHTTPClient({
-             // function called when the response data is available
              onload : function(e) {
                  Ti.API.info("Received text: " + this.responseText);
              },
-             // function called when an error occurs, including a timeout
              onerror : function(e) {
                  Ti.API.debug(e.error);
              },
              timeout : 5000  /* in milliseconds */
          });
-         // Prepare the connection.
          client.open("POST", url);
-         // Send the request.
          client.send(blb);
     }
 }); }

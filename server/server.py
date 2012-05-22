@@ -9,18 +9,18 @@ import time
 import re
 import s3
 
-## S3 Credentials 
-s3_access  = 'AKIAISISGEHX4CHY3KFA'
-s3_secret  = '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'
-bucket     = 'pubnub-ommshot'
-access_url = 'http://%s.s3.amazonaws.com/%s'
-
 ## PubNub Credentials
 pub_key   = 'pub-c-b8e1ab41-546d-4108-87c8-82d3d8874d3b'
 sub_key   = 'sub-c-3b55a087-9faf-11e1-a732-8913f2c5fd35'
 sec_key   = 'sec-c-ZDBjNjg4NjktYzNlMi00NWRmLTg2ZDgtZGIxMGFjY2U5ZWY3'
 channel   = 'jKSMN7326MQvl4mKIya025XswMU3C3dB7D9kN3FD9de'
 origin    = 'ommshot.pubnub.com'
+
+## S3 Credentials 
+s3_access  = 'AKIAISISGEHX4CHY3KFA'
+s3_secret  = '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'
+bucket     = 'pubnub-ommshot'
+access_url = 'http://%s.s3.amazonaws.com/%s'
 
 ## In-memory Storage of Photo URLs
 image_history = []
