@@ -46,7 +46,7 @@ It is a good idea to obtain your own API keys.
  1. Open `./server/server.py` and replace PUBNUB and S3 Credentials.
     PubNub Credentials available via http://www.pubnub.com
     and S3 Credentials available via http://aws.amazon.com/s3/
- 2. Open `./webview/viewer.html` and replace PUBNBU Credentials.
+ 2. Open `./webview/viewer.html` and replace PUBNUB Credentials.
 
 ## Setup of Code
 
@@ -64,7 +64,7 @@ Then execute python ./server/server.py
 
 #### Mobile Titanium Setup
 
-Build Mobile Component with Titanuim by dropping in the `app.js`
+Build Mobile Component with Titanium by dropping in the `app.js`
 file found in the `mobile` directory.
 
 Replace `url` var for upload photo.
@@ -75,8 +75,4 @@ Install app on your mobile phone and launch.
 #### Website View
 
 Open `./webview/viewer.html` in a web browser.
-
-
-
-
 
